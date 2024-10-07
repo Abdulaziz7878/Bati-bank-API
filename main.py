@@ -18,6 +18,15 @@ class InputData(BaseModel):
     Monetary_WoE: float
     Stability_WoE: float
 
+@app.get("/")
+async def root():
+    return {"message": """To use this API to pridict a credit score make a post request to "/predict" with a body format of {
+        "Recency_WoE": float,
+        "Frequency_WoE": float,
+        "Monetary_WoE": float,
+        "Stability_WoE": float
+    }"""}
+
 # Define the prediction endpoint
 @app.post("/predict")
 async def predict(data: InputData):
